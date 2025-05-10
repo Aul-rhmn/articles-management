@@ -46,7 +46,6 @@ export default function Dashboard() {
       try {
         const [articlesData, categoriesData] = await Promise.all([articlesAPI.getAll(), categoriesAPI.getAll()])
 
-        // Ensure articlesData is an array
         const articlesArray = Array.isArray(articlesData) ? articlesData : []
 
         setArticles(articlesArray)
@@ -83,7 +82,7 @@ export default function Dashboard() {
     }
 
     setFilteredArticles(results)
-    setCurrentPage(1) // Reset to first page when filters change
+    setCurrentPage(1)
   }, [debouncedSearchTerm, selectedCategory, articles])
 
   // Calculate pagination
@@ -100,7 +99,6 @@ export default function Dashboard() {
 
   // Handle logout
   const handleLogout = () => {
-    // In a real app, you would clear authentication state here
     router.push("/")
   }
 

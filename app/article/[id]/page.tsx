@@ -12,7 +12,7 @@ import { articlesAPI } from "@/lib/api"
 export default function ArticlePage({ params }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const role = searchParams.get("role") || "user" // Get role from URL params
+  const role = searchParams.get("role") || "user"
   const [article, setArticle] = useState(null)
   const [relatedArticles, setRelatedArticles] = useState([])
   const [isLoading, setIsLoading] = useState(true)

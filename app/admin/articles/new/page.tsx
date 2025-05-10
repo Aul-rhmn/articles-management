@@ -16,7 +16,6 @@ import { z } from "zod"
 import { toast } from "@/components/ui/use-toast"
 import { articlesAPI, categoriesAPI } from "@/lib/api"
 
-// Less strict form validation
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
   category: z.string().optional(),

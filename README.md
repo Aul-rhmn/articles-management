@@ -5,7 +5,7 @@ A modern platform for managing articles with different user roles and permission
 This system allows users to browse articles by category, search with debounce functionality, and view article details.
 Administrators can manage articles and categories, publish drafts, and maintain the content.
 
-**Live Demo**: [https://article-management.vercel.app](https://article-management.vercel.app)
+**Live Demo**: [https://articles-management-zeta.vercel.app/](https://articles-management-zeta.vercel.app/)
 
 ## Login Credentials
 

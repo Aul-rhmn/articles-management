@@ -1,11 +1,10 @@
 // API base URL
 const API_BASE_URL = "https://test-fe.mysellerpintar.com/api"
 
-// Create a mock data storage that persists during the session
 let mockArticlesStorage = null
 let mockCategoriesStorage = null
 
-// Create a mock articles array with shorter content
+// mock data
 const mockArticlesData = [
   {
     id: 1,
@@ -165,7 +164,7 @@ const mockArticlesData = [
   },
 ]
 
-// Function to get mock articles with persistence
+// Function to get mock articles 
 function getMockArticles() {
   if (!mockArticlesStorage) {
     console.log("Initializing mock articles storage")
@@ -180,7 +179,7 @@ function getMockArticleById(id) {
   return articles.find((article) => article.id === Number(id))
 }
 
-// Function to get mock categories with persistence
+// Function to get mock categories 
 function getMockCategories() {
   if (!mockCategoriesStorage) {
     console.log("Initializing mock categories storage")
@@ -201,7 +200,6 @@ function getMockCategoryById(id) {
   return categories.find((category) => category.id === Number(id))
 }
 
-// Helper function for fetch with timeout
 const fetchWithTimeout = async (url, options = {}, timeout = 5000) => {
   console.log(`Attempting to fetch: ${url}`)
   const controller = new AbortController()

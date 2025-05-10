@@ -70,13 +70,11 @@ export default function EditArticle({ params }) {
         setArticle(articleData)
         setCategories(categoriesData)
 
-        // Extract content from HTML
         let content = articleData.content || ""
         content = content.replace(/<p>(.*?)<\/p>/g, "$1\n\n")
         content = content.replace(/<br \/>/g, "\n")
         content = content.replace(/<\/?[^>]+(>|$)/g, "")
 
-        // Set form values
         form.reset({
           title: articleData.title,
           category: articleData.category,
@@ -102,7 +100,6 @@ export default function EditArticle({ params }) {
     setIsSubmitting(true)
 
     try {
-      // Create updated article object
       const updatedArticle = {
         ...article,
         title: values.title,
@@ -112,7 +109,6 @@ export default function EditArticle({ params }) {
         date: new Date().toISOString().split("T")[0],
       }
 
-      // Update the article
       await articlesAPI.update(params.id, updatedArticle)
 
       toast({
@@ -147,7 +143,6 @@ export default function EditArticle({ params }) {
     }
 
     try {
-      // Create updated article object
       const updatedArticle = {
         ...article,
         title: values.title,
@@ -160,7 +155,6 @@ export default function EditArticle({ params }) {
         date: new Date().toISOString().split("T")[0],
       }
 
-      // Update the article
       await articlesAPI.update(params.id, updatedArticle)
 
       toast({
@@ -180,7 +174,6 @@ export default function EditArticle({ params }) {
   }
 
   const handleCancel = () => {
-    // Check if form has been modified
     if (form.formState.isDirty) {
       if (confirm("You have unsaved changes. Are you sure you want to leave?")) {
         router.push(`/admin/dashboard?role=${role}`)
@@ -190,7 +183,6 @@ export default function EditArticle({ params }) {
     }
   }
 
-  // Format content for preview
   const formatContent = (content: string) => {
     if (!content) return "<p>Nothing to preview yet.</p>"
 
