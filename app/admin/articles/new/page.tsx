@@ -343,7 +343,7 @@ export default function NewArticle() {
 
       <footer className="border-t py-6">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2024 Article Management System. All rights reserved.</p>
+          <p>© 2025 Article Management System. All rights reserved.</p>
         </div>
       </footer>
     </div>

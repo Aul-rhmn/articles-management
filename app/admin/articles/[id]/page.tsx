@@ -30,7 +30,7 @@ const formSchema = z.object({
 export default function EditArticle({ params }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const role = searchParams.get("role") || "admin" // Default to admin
+  const role = searchParams.get("role") || "admin"
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [previewMode, setPreviewMode] = useState("write")
   const [article, setArticle] = useState(null)
@@ -47,7 +47,7 @@ export default function EditArticle({ params }) {
     },
   })
 
-  // Fetch article and categories data
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
@@ -131,8 +131,6 @@ export default function EditArticle({ params }) {
 
   const handleSaveDraft = async () => {
     const values = form.getValues()
-
-    // Validate form data
     if (!values.title) {
       toast({
         title: "Title required",

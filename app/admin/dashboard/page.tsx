@@ -56,7 +56,6 @@ export default function AdminDashboard() {
   const itemsPerPage = 5
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
-  // Fetch data function
   const fetchData = async () => {
     setIsLoading(true)
     try {
@@ -75,12 +74,11 @@ export default function AdminDashboard() {
     }
   }
 
-  // Fetch data on component mount
   useEffect(() => {
     fetchData()
   }, [])
 
-  // Filter articles based on search, status, and category
+
   const filteredArticles = articles.filter((article) => {
     const matchesSearch =
       article.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
@@ -90,35 +88,30 @@ export default function AdminDashboard() {
     return matchesSearch && matchesStatus && matchesCategory
   })
 
-  // Filter categories based on search
   const filteredCategories = categoryList.filter((category) =>
     category.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()),
   )
 
-  // Calculate pagination
   const currentArticles = filteredArticles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
   const currentCategories = filteredCategories.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
   const totalArticlePages = Math.ceil(filteredArticles.length / itemsPerPage)
   const totalCategoryPages = Math.ceil(filteredCategories.length / itemsPerPage)
 
-  // Reset page when tab, search, or filters change
   useEffect(() => {
     setCurrentPage(1)
   }, [activeTab, debouncedSearchTerm, statusFilter, categoryFilter])
 
-  // Handle page change
+
   const handlePageChange = (page) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
-
-  // Handle delete click
+ 
   const handleDeleteClick = (item, type) => {
     setItemToDelete({ item, type })
     setDeleteDialogOpen(true)
   }
 
-  // Handle delete confirm
   const handleDeleteConfirm = async () => {
     setIsDeleting(true)
     try {
@@ -150,7 +143,6 @@ export default function AdminDashboard() {
     }
   }
 
-  // Handle publish article
   const handlePublishArticle = async (article) => {
     try {
       const updatedArticle = {
@@ -174,14 +166,12 @@ export default function AdminDashboard() {
     }
   }
 
-  // Clear filters
   const clearFilters = () => {
     setStatusFilter("all")
     setCategoryFilter("all")
     setSearchTerm("")
   }
 
-  // Loading state
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">

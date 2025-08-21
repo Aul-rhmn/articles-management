@@ -1,10 +1,9 @@
-// API base URL
 const API_BASE_URL = "https://test-fe.mysellerpintar.com/api"
 
 let mockArticlesStorage = null
 let mockCategoriesStorage = null
 
-// mock data
+
 const mockArticlesData = [
   {
     id: 1,
@@ -164,7 +163,6 @@ const mockArticlesData = [
   },
 ]
 
-// Function to get mock articles 
 function getMockArticles() {
   if (!mockArticlesStorage) {
     console.log("Initializing mock articles storage")
@@ -173,13 +171,11 @@ function getMockArticles() {
   return mockArticlesStorage
 }
 
-// Function to get mock article by ID
 function getMockArticleById(id) {
   const articles = getMockArticles()
   return articles.find((article) => article.id === Number(id))
 }
 
-// Function to get mock categories 
 function getMockCategories() {
   if (!mockCategoriesStorage) {
     console.log("Initializing mock categories storage")
@@ -194,7 +190,6 @@ function getMockCategories() {
   return mockCategoriesStorage
 }
 
-// Function to get mock category by ID
 function getMockCategoryById(id) {
   const categories = getMockCategories()
   return categories.find((category) => category.id === Number(id))
@@ -217,14 +212,11 @@ const fetchWithTimeout = async (url, options = {}, timeout = 5000) => {
   }
 }
 
-// Function to check if API is accessible - always returns false to use mock data
 export const isApiAccessible = async () => {
   return false
 }
 
-// Service for articles
 export const articlesAPI = {
-  // Get all articles
   getAll: async () => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -239,7 +231,6 @@ export const articlesAPI = {
     }
   },
 
-  // Get article by ID
   getById: async (id) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -254,7 +245,6 @@ export const articlesAPI = {
     }
   },
 
-  // Create new article
   create: async (articleData) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -288,7 +278,6 @@ export const articlesAPI = {
     } catch (error) {
       console.error("Error creating article:", error)
 
-      // Fallback to mock data
       const mockArticles = getMockArticles()
       const maxId = Math.max(...mockArticles.map((article) => Number(article.id)), 0)
 
@@ -308,7 +297,6 @@ export const articlesAPI = {
     }
   },
 
-  // Update article
   update: async (id, articleData) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -334,7 +322,6 @@ export const articlesAPI = {
     } catch (error) {
       console.error(`Error updating article ${id}:`, error)
 
-      // Fallback to mock data
       const mockArticles = getMockArticles()
       const articleIndex = mockArticles.findIndex((article) => article.id === Number(id))
 
@@ -346,7 +333,6 @@ export const articlesAPI = {
     }
   },
 
-  // Delete article
   delete: async (id) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -369,8 +355,6 @@ export const articlesAPI = {
       return await response.json()
     } catch (error) {
       console.error(`Error deleting article ${id}:`, error)
-
-      // Fallback to mock data
       const mockArticles = getMockArticles()
       const articleIndex = mockArticles.findIndex((article) => article.id === Number(id))
 
@@ -383,9 +367,7 @@ export const articlesAPI = {
   },
 }
 
-// Service for categories
 export const categoriesAPI = {
-  // Get all categories
   getAll: async () => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -400,7 +382,6 @@ export const categoriesAPI = {
     }
   },
 
-  // Get category by ID
   getById: async (id) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -415,7 +396,6 @@ export const categoriesAPI = {
     }
   },
 
-  // Create new category
   create: async (categoryData) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -443,8 +423,6 @@ export const categoriesAPI = {
       return await response.json()
     } catch (error) {
       console.error("Error creating category:", error)
-
-      // Fallback to mock data
       const mockCategories = getMockCategories()
       const maxId = Math.max(...mockCategories.map((category) => category.id), 0)
 
@@ -459,7 +437,6 @@ export const categoriesAPI = {
     }
   },
 
-  // Update category
   update: async (id, categoryData) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -485,7 +462,6 @@ export const categoriesAPI = {
     } catch (error) {
       console.error(`Error updating category ${id}:`, error)
 
-      // Fallback to mock data
       const mockCategories = getMockCategories()
       const categoryIndex = mockCategories.findIndex((category) => category.id === Number(id))
 
@@ -497,7 +473,6 @@ export const categoriesAPI = {
     }
   },
 
-  // Delete category
   delete: async (id) => {
     try {
       const apiAccessible = await isApiAccessible()
@@ -520,8 +495,6 @@ export const categoriesAPI = {
       return await response.json()
     } catch (error) {
       console.error(`Error deleting category ${id}:`, error)
-
-      // Fallback to mock data
       const mockCategories = getMockCategories()
       const categoryIndex = mockCategories.findIndex((category) => category.id === Number(id))
 

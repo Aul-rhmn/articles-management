@@ -22,7 +22,6 @@ export default function ArticlePage({ params }) {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    // Fetch article data
     const fetchArticle = async () => {
       setIsLoading(true)
       setError(null)
@@ -36,16 +35,11 @@ export default function ArticlePage({ params }) {
         }
 
         setArticle(articleData)
-
-        // Set random like count for demo purposes
-        // In a real app, this would come from the API
         setLikeCount(Math.floor(Math.random() * 100) + 5)
 
-        // Fetch related articles if available
         if (articleData.relatedArticles && articleData.relatedArticles.length > 0) {
           const allArticles = await articlesAPI.getAll()
 
-          // Ensure allArticles is an array
           const articlesArray = Array.isArray(allArticles) ? allArticles : []
 
           const related = articlesArray.filter((a) => articleData.relatedArticles.includes(a.id))
@@ -63,7 +57,6 @@ export default function ArticlePage({ params }) {
   }, [params.id])
 
   const handleGoBack = () => {
-    // Redirect based on role
     if (role === "admin") {
       router.push("/admin/dashboard")
     } else {
@@ -78,19 +71,16 @@ export default function ArticlePage({ params }) {
 
   const handleBookmark = () => {
     setIsBookmarked(!isBookmarked)
-    // Show feedback
     if (!isBookmarked) {
       alert("Article saved to your bookmarks!")
     }
   }
 
   const handleShare = () => {
-    // In a real app, this would open a share dialog
     alert("Share functionality would open here with options for social media, email, etc.")
   }
 
   const navigateToRelatedArticle = (articleId) => {
-    // Preserve role when navigating to related articles
     router.push(`/article/${articleId}?role=${role}`)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }

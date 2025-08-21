@@ -39,7 +39,7 @@ export default function Dashboard() {
   const articlesPerPage = 5
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
-  // Fetch articles and categories on component mount
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
@@ -61,13 +61,10 @@ export default function Dashboard() {
     fetchData()
   }, [])
 
-  // Filter articles based on search term and category
   useEffect(() => {
     if (!articles || !articles.length) return
 
     let results = articles
-
-    // Filter by search term
     if (debouncedSearchTerm) {
       results = results.filter(
         (article) =>
@@ -76,7 +73,6 @@ export default function Dashboard() {
       )
     }
 
-    // Filter by category
     if (selectedCategory !== "all") {
       results = results.filter((article) => article.category === selectedCategory)
     }
@@ -85,24 +81,20 @@ export default function Dashboard() {
     setCurrentPage(1)
   }, [debouncedSearchTerm, selectedCategory, articles])
 
-  // Calculate pagination
   const indexOfLastArticle = currentPage * articlesPerPage
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage
   const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle)
   const totalPages = Math.ceil(filteredArticles.length / articlesPerPage)
 
-  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  // Handle logout
   const handleLogout = () => {
     router.push("/")
   }
 
-  // Navigate to article with role parameter
   const navigateToArticle = (articleId) => {
     router.push(`/article/${articleId}?role=user`)
   }
